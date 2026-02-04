@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Styles - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           CSS OPTIMIZATION: WELL-ORGANIZED & FAST
+           ============================================ */
+
+        /* === VARIABLES: Design Tokens === */
+        :root {
+            --font-heading: 'Playfair Display', serif;
+            --font-brand: 'Poppins', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            
+            --fs-xs: 0.75rem;
+            --fs-sm: 0.875rem;
+            --fs-base: 1rem;
+            --fs-md: 1.2rem;
+            --fs-lg: 1.44rem;
+            --fs-xl: 1.728rem;
+            --fs-2xl: 2.074rem;
+            --fs-3xl: 2.488rem;
+            --fs-4xl: 2.986rem;
+            
+            <link rel="stylesheet" href="styles.css">
+            .project-info {
+                padding: 1.5rem;
+            }
+        }
+        /* === TYPOGRAPHY: Better readability on small screens === */
+        @media (max-width: 1024px) {
+            /* Slightly increase base text for tablets */
+            body {
+                font-size: 1.03rem; /* ~16.5px */
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            section h2 {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Mobile - prioritize legibility */
+            body {
+                font-size: 1.0625rem; /* 17px */
+                line-height: 1.5;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+                letter-spacing: 0;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            section h2 {
+                font-size: 1.4rem;
+            }
+
+            .project-info h3 {
+                font-size: 1.05rem;
+            }
+
+            .project-info p {
+                font-size: 0.95rem;
+            }
+
+            .skill-tag {
+                font-size: 0.78rem;
+                padding: 0.42rem 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Small mobile - keep text readable without line wraps */
+            body {
+                font-size: 1rem; /* 16px */
+                line-height: 1.45;
+            }
+
+            header h1 {
+                font-size: 1.4rem;
+            }
+
+            header p {
+                font-size: 0.95rem;
+            }
+
+            section h2 {
+                font-size: 1.2rem;
+            }
+
+            .project-info h3 {
+                font-size: 1rem;
+            }
+
+            .project-info p {
+                font-size: 0.95rem;
+            }
+
+            nav a {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+    <style>
+        /* Buttons demo styles (hover, focus, underline, neon, 3D) */
+        .btn{
+            -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+            padding:10px 16px; border-radius:8px; border:0; cursor:pointer; font-weight:600; font-size:0.9375rem;
+            transition: all 200ms cubic-bezier(.2,.9,.2,1); display:inline-flex; align-items:center; gap:10px;
+        }
+        .btn:focus{outline:3px solid rgba(102,126,234,0.18); outline-offset:3px}
+        .btn:active{transform:translateY(1px)}
+
+        .btn-primary{background:linear-gradient(90deg,var(--color-primary) 0%, var(--color-secondary) 100%); color:var(--color-text-white); box-shadow:0 6px 18px rgba(102,126,234,0.18)}
+        .btn-primary:hover{transform:translateY(-4px) scale(1.02); box-shadow:0 14px 30px rgba(102,126,234,0.18)}
+
+        .btn-outline{background:transparent; color:var(--color-primary); border:1px solid rgba(102,126,234,0.18)}
+        .btn-outline:hover{background:rgba(102,126,234,0.06); transform:translateY(-2px)}
+
+        .btn-ghost{background:transparent; color:var(--color-text-primary)}
+        .btn-ghost:hover{color:var(--color-primary); text-decoration:underline; transform:translateY(-2px)}
+
+        .btn-3d{background:linear-gradient(180deg,#ffffff 0%, #f3f4f6 100%); color:var(--color-dark-800); box-shadow:0 10px 0 rgba(0,0,0,0.06), 0 18px 30px rgba(0,0,0,0.06)}
+        .btn-3d:hover{transform:translateY(-6px)}
+
+        .btn-neon{background:transparent; color:var(--color-accent); border:1px solid rgba(247,140,107,0.18)}
+        .btn-neon:hover{box-shadow:0 6px 24px rgba(247,140,107,0.18); transform:translateY(-3px)}
+
+        .btn-underline{background:transparent; position:relative; padding-bottom:12px}
+        .btn-underline::after{content:""; position:absolute; left:10px; right:10px; bottom:6px; height:2px; background:linear-gradient(90deg,var(--color-primary),var(--color-secondary)); transform:scaleX(0); transform-origin:left; transition:transform 220ms}
+        .btn-underline:hover::after{transform:scaleX(1)}
+
+        .buttons-row{display:flex; gap:12px; flex-wrap:wrap}
+    </style>
+    <style>
+        /* Modal styles for portfolio details */
+        .modal-overlay{position:fixed; inset:0; background:rgba(2,6,23,0.6); display:none; align-items:center; justify-content:center; z-index:1200}
+        .modal-overlay.active{display:flex}
+        .modal{background:var(--color-bg-primary); color:var(--color-text-primary); width:min(820px,calc(100% - 40px)); border-radius:10px; box-shadow:0 20px 60px rgba(2,6,23,0.6); transform:translateY(12px) scale(.995); opacity:0; transition:all 260ms cubic-bezier(.2,.9,.2,1); max-height:80vh; overflow:auto}
+        .modal-overlay.active .modal{transform:translateY(0) scale(1); opacity:1}
+        .modal-header{display:flex; align-items:center; justify-content:space-between; padding:18px 20px; border-bottom:1px solid var(--color-border-light)}
+        .modal-title{font-size:1.125rem; font-weight:700}
+        .modal-close{background:transparent;border:0;font-size:1rem;cursor:pointer;padding:8px;border-radius:6px}
+        .modal-body{padding:18px 20px; color:var(--color-text-secondary)}
+        .modal-body p{margin-bottom:12px}
+        .modal-meta{font-size:0.9rem;color:var(--color-text-secondary)}
+        @media (max-width:520px){ .modal{width:calc(100% - 20px)} .modal-body{padding:14px} }
+    </style>
+    <style>
+        /* Tooltip styles for navigation */
+        .tooltip {
+            position: absolute;
+            z-index: 1400;
+            background: rgba(17,24,39,0.95);
+            color: #fff;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            line-height: 1;
+            box-shadow: 0 10px 30px rgba(2,6,23,0.5);
+            pointer-events: none;
+            transform-origin: center top;
+            transform: translateY(6px) scale(.98);
+            opacity: 0;
+            transition: opacity 160ms ease, transform 160ms ease;
+            white-space: nowrap;
+        }
+        .tooltip.visible{ opacity: 1; transform: translateY(0) scale(1); }
+        .tooltip::after{
+            content: '';
+            position: absolute;
+            left: 50%; transform: translateX(-50%);
+            top: 100%; width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 6px solid rgba(17,24,39,0.95);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Alex Styles</h1>
+        <p>UI/UX Designer & Creative Developer</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#about" data-tooltip="Learn more about me">About Me</a></li>
+            <li><a href="#portfolio" data-tooltip="View portfolio projects">Portfolio</a></li>
+            <li><a href="#contact" data-tooltip="Get in touch with me">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- About Me Section -->
+        <section id="about">
+            <div id="about-text">
+                <h2>About Me</h2>
+                <h3>Hi! I'm Alex Styles</h3>
+                <p>
+                    I'm a passionate UI/UX designer with 5+ years of experience creating engaging digital experiences. 
+                    I specialize in responsive web design, user-centered design, and modern CSS techniques including 
+                    Flexbox and CSS Grid.
+                </p>
+                <p>
+                    My goal is to transform ideas into beautiful, functional designs that users love. I work closely 
+                    with clients and teams to understand their needs and deliver solutions that exceed expectations.
+                </p>
+                <div class="skills">
+                    <span class="skill-tag">UI Design</span>
+                    <span class="skill-tag">UX Research</span>
+                    <span class="skill-tag">HTML/CSS</span>
+                    <span class="skill-tag">Responsive Design</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Figma</span>
+                </div>
+            </div>
+            <div id="about-image">
+                <p>[Profile Image Placeholder]</p>
+            </div>
+        </section>
+        </section>
+
+       
+
+        <!-- Portfolio Section -->
+        <section id="portfolio">
+            <h2>Portfolio</h2>
+            <div class="portfolio-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-thumbnail">🎨</div>
+                    <div class="project-info">
+                        <h3>E-Commerce Redesign</h3>
+                        <p>A complete redesign of an online retail platform improving conversion by 45%.</p>
+                        <a href="#" class="project-link" data-title="E-Commerce Redesign" data-desc="A complete redesign of an online retail platform improving conversion by 45%.">View Project</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-thumbnail">📱</div>
+                    <div class="project-info">
+                        <h3>Mobile App Design</h3>
+                        <p>iOS and Android app for productivity featuring intuitive navigation and animations.</p>
+                        <a href="#" class="project-link" data-title="Mobile App Design" data-desc="iOS and Android app for productivity featuring intuitive navigation and animations.">View Project</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-thumbnail">💼</div>
+                    <div class="project-info">
+                        <h3>Corporate Website</h3>
+                        <p>Modern business website with advanced CSS Grid layouts and smooth interactions.</p>
+                        <a href="#" class="project-link" data-title="Corporate Website" data-desc="Modern business website with advanced CSS Grid layouts and smooth interactions.">View Project</a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-thumbnail">🎯</div>
+                    <div class="project-info">
+                        <h3>SaaS Dashboard</h3>
+                        <p>Data visualization dashboard with responsive design and real-time updates.</p>
+                        <a href="#" class="project-link" data-title="SaaS Dashboard" data-desc="Data visualization dashboard with responsive design and real-time updates.">View Project</a>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <div class="project-thumbnail">🌐</div>
+                    <div class="project-info">
+                        <h3>Travel Portal</h3>
+                        <p>Booking website with stunning imagery and seamless user experience.</p>
+                        <a href="#" class="project-link" data-title="Travel Portal" data-desc="Booking website with stunning imagery and seamless user experience.">View Project</a>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card">
+                    <div class="project-thumbnail">🔧</div>
+                    <div class="project-info">
+                        <h3>Design System</h3>
+                        <p>Comprehensive design system and component library for enterprise clients.</p>
+                        <a href="#" class="project-link" data-title="Design System" data-desc="Comprehensive design system and component library for enterprise clients.">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <p>Have a project in mind? I'd love to hear from you! Fill out the form below and I'll get back to you within 24 hours.</p>
+            <form>
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required placeholder="John Doe">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="john@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required placeholder="Project Inquiry">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required placeholder="Tell me about your project..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Alex Styles. All rights reserved. | Designed with passion and CSS Grid.</p>
+    </footer>
+    <!-- Portfolio Modal (hidden until opened) -->
+    <div id="portfolio-modal" class="modal-overlay" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc">
+            <div class="modal-header">
+                <div id="modal-title" class="modal-title">Project Title</div>
+                <button class="modal-close" aria-label="Close project details">✕</button>
+            </div>
+            <div class="modal-body">
+                <div id="modal-desc">Project description goes here.</div>
+                <div class="modal-meta" id="modal-meta"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function(){
+            const links = document.querySelectorAll('.project-link');
+            const overlay = document.getElementById('portfolio-modal');
+            const dialog = overlay.querySelector('.modal');
+            const titleEl = document.getElementById('modal-title');
+            const descEl = document.getElementById('modal-desc');
+            const metaEl = document.getElementById('modal-meta');
+            const closeBtn = overlay.querySelector('.modal-close');
+            let lastFocused = null;
+
+            function openModal(data){
+                titleEl.textContent = data.title || 'Project';
+                descEl.textContent = data.desc || '';
+                metaEl.textContent = data.meta || '';
+                overlay.classList.add('active');
+                overlay.setAttribute('aria-hidden','false');
+                lastFocused = document.activeElement;
+                closeBtn.focus();
+                document.addEventListener('keydown', onKeyDown);
+            }
+
+            function closeModal(){
+                overlay.classList.remove('active');
+                overlay.setAttribute('aria-hidden','true');
+                document.removeEventListener('keydown', onKeyDown);
+                if(lastFocused) lastFocused.focus();
+            }
+
+            function onKeyDown(e){
+                if(e.key === 'Escape') closeModal();
+                if(e.key === 'Tab') maintainFocus(e);
+            }
+
+            function maintainFocus(e){
+                const focusable = dialog.querySelectorAll('a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])');
+                if(!focusable.length) return;
+                const first = focusable[0];
+                const last = focusable[focusable.length -1];
+                if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+                else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+            }
+
+            links.forEach(link => {
+                link.addEventListener('click', function(e){
+                    e.preventDefault();
+                    const title = this.dataset.title || this.closest('.project-info')?.querySelector('h3')?.textContent;
+                    const desc = this.dataset.desc || this.closest('.project-info')?.querySelector('p')?.textContent;
+                    openModal({title, desc});
+                });
+            });
+
+            closeBtn.addEventListener('click', closeModal);
+            overlay.addEventListener('click', function(e){ if(e.target === overlay) closeModal(); });
+        })();
+    </script>
+    <script>
+        (function(){
+            // Accessible tooltip manager for nav links
+            const tooltip = document.createElement('div');
+            tooltip.className = 'tooltip';
+            tooltip.setAttribute('role','tooltip');
+            tooltip.id = 'nav-tooltip';
+            document.body.appendChild(tooltip);
+
+            const links = document.querySelectorAll('nav a[data-tooltip]');
+
+            function show(el){
+                const text = el.getAttribute('data-tooltip') || el.textContent.trim();
+                tooltip.textContent = text;
+                position(el);
+                tooltip.classList.add('visible');
+                el.setAttribute('aria-describedby', tooltip.id);
+            }
+
+            function hide(el){
+                tooltip.classList.remove('visible');
+                el.removeAttribute('aria-describedby');
+            }
+
+            function position(el){
+                const rect = el.getBoundingClientRect();
+                const ttRect = tooltip.getBoundingClientRect();
+                // prefer above the element, but if not enough space put below
+                const gap = 8;
+                let top = rect.top - ttRect.height - gap;
+                if(top < 8) top = rect.bottom + gap;
+                let left = rect.left + (rect.width / 2) - (ttRect.width / 2);
+                const minLeft = 8; const maxLeft = window.innerWidth - ttRect.width - 8;
+                if(left < minLeft) left = minLeft;
+                if(left > maxLeft) left = maxLeft;
+                tooltip.style.top = (top + window.scrollY) + 'px';
+                tooltip.style.left = (left + window.scrollX) + 'px';
+            }
+
+            links.forEach(a=>{
+                a.addEventListener('mouseenter', ()=> show(a));
+                a.addEventListener('focus', ()=> show(a));
+                a.addEventListener('mouseleave', ()=> hide(a));
+                a.addEventListener('blur', ()=> hide(a));
+                // For touch, show on first tap, follow by navigation on second
+                let tapped = false;
+                a.addEventListener('touchstart', (e)=>{
+                    if(!tapped){ e.preventDefault(); show(a); tapped = true; setTimeout(()=> tapped = false, 700); }
+                }, {passive:false});
+            });
+
+            // Ensure tooltip repositions on resize/scroll while visible
+            let raf;
+            function update(){ if(tooltip.classList.contains('visible')){ const described = document.querySelector('[aria-describedby="'+tooltip.id+'"]'); if(described) position(described); } raf = requestAnimationFrame(update); }
+            raf = requestAnimationFrame(update);
+            window.addEventListener('resize', ()=>{ if(tooltip.classList.contains('visible')){ const d = document.querySelector('[aria-describedby="'+tooltip.id+'"]'); if(d) position(d); } });
+
+            // cleanup on unload
+            window.addEventListener('unload', ()=>{ cancelAnimationFrame(raf); tooltip.remove(); });
+        })();
+    </script>
+</body>
+</html>
